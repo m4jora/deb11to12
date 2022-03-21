@@ -15,8 +15,7 @@ apt-get update -y && apt-get upgrade -y
 apt-get install --reinstall libwacom-common -y
 apt-get dist-upgrade -y
 declare curr_kernel=$(apt list | grep '^linux-image-5.*amd64\/.*installed' | grep -v 'cloud\|rt' | sed 's/amd64\/.*/amd64/');
-declare new_kernel=$(apt list | grep '^linux-image-5.*amd64\/.*testing' | grep -v 'cloud\|rt
-' | sed 's/amd64\/.*/amd64/');
+declare new_kernel=$(apt list | grep '^linux-image-5.*amd64\/.*testing' | grep -v 'cloud\|rt' | sed 's/amd64\/.*/amd64/');
 declare headers=$(apt list | grep '^linux-headers-5.*amd64\/' | grep -v 'cloud\|rt' | sed 's/amd64\/.*/amd64/');
 if [ $curr_kernel ] && [ $new_kernel ] && [ $curr_kernel != $new_kernel ]; then
 apt-get install -y $new_kernel
@@ -25,7 +24,7 @@ fi
 if [ $headers ]; then
 apt-get install -y $headers
 fi
-apt-get autoremove
+apt-get autoremove -y
 update-grub
 systemctl reboot
 else
