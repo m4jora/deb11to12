@@ -8,9 +8,7 @@ clear
 declare r="n";
 read -p "Ready? [y/n]: " r
 if [ $r == 'y' ]||[ $r == 'Y' ]; then
-sed -i 's/#deb c/deb c/' /etc/apt/sources.list
-sed -i 's/deb c/#deb c/' /etc/apt/sources.list
-sed -i 's/bullseye/bookworm/' /etc/apt/sources.list
+sed -i 's/#deb c/deb c/;s/deb c/#deb c/;s/bullseye/bookworm/' /etc/apt/sources.list
 apt-get update -y && apt-get upgrade -y
 apt-get install --reinstall libwacom-common -y
 apt-get dist-upgrade -y
